@@ -2,9 +2,12 @@
 
 Language Features:
  * Wasm backend: Add ``i32.ctz``, ``i64.ctz``, ``i32.popcnt``, and ``i64.popcnt``.
+ * Inheritance: Allow overrides to have stricter state mutability: ``view`` can override ``nonpayable`` and ``pure`` can override ``view``.
+
 
 Compiler Features:
  * Code Generator: Evaluate ``keccak256`` of string literals at compile-time.
+
 
 Bugfixes:
  * Type Checker: Fix overload resolution in combination with ``{value: ...}``.
