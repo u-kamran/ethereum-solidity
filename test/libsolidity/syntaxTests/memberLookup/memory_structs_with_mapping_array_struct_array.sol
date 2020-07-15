@@ -9,4 +9,4 @@ contract Test {
     }
 }
 // ----
-// TypeError 4061: (161-172): Type struct Test.S2 is only valid in storage because it contains a (nested) mapping.
+// TypeError 6651: (161-172): Data location must be "storage" for variable, but "memory" was given.
