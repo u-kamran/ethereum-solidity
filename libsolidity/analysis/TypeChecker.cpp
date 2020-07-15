@@ -1389,9 +1389,16 @@ bool TypeChecker::visit(Conditional const& _conditional)
 
 	if (_conditional.annotation().willBeWrittenTo)
 		m_errorReporter.typeError(
-				2212_error,
-				_conditional.location(),
-				"Conditional expression as left value is not supported yet."
+			2212_error,
+			_conditional.location(),
+			"Conditional expression as left value is not supported yet."
+		);
+
+	if (_conditional.annotation().willApplyNamedParametersOnto)
+		m_errorReporter.fatalTypeError(
+			7937_error,
+			_conditional.location(),
+			"Cannot call function with named arguments on conditional operator result"
 		);
 
 	return false;
@@ -1488,6 +1495,12 @@ bool TypeChecker::visit(TupleExpression const& _tuple)
 {
 	vector<ASTPointer<Expression>> const& components = _tuple.components();
 	TypePointers types;
+
+	if (_tuple.annotation().willApplyNamedParametersOnto)
+	{
+		solAssert(components.size() == 1, "");
+		components[0]->annotation().willApplyNamedParametersOnto = true;
+	}
 
 	if (_tuple.annotation().willBeWrittenTo)
 	{
@@ -2263,6 +2276,7 @@ bool TypeChecker::visit(FunctionCall const& _functionCall)
 
 		_functionCall.expression().annotation().arguments = std::move(funcCallArgs);
 	}
+	_functionCall.expression().annotation().willApplyNamedParametersOnto = !_functionCall.names().empty();
 
 	_functionCall.expression().accept(*this);
 

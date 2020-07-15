@@ -11,6 +11,7 @@ Compiler Features:
 Bugfixes:
  * Type Checker: Fix overload resolution in combination with ``{value: ...}``.
  * Type Checker: Fix internal compiler error related to oversized types.
+ * Type Checker: Don't allow function application with named arguments on the result of a conditional operator.
 
 Compiler Features:
  * Build System: Update internal dependency of jsoncpp to 1.9.3.

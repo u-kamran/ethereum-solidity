@@ -249,6 +249,9 @@ struct ExpressionAnnotation: ASTAnnotation
 	/// Would be false for --, ++, delete, +=, -=, ....
 	bool lValueOfOrdinaryAssignment = false;
 
+	/// Whether the expression is used to apply named function parameters on it
+	bool willApplyNamedParametersOnto = false;
+
 	/// Types and - if given - names of arguments if the expr. is a function
 	/// that is called, used for overload resolution
 	std::optional<FuncCallArguments> arguments;
