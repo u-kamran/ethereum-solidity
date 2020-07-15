@@ -2,6 +2,7 @@
 
 Language Features:
  * Wasm backend: Add ``i32.ctz``, ``i64.ctz``, ``i32.popcnt``, and ``i64.popcnt``.
+ * State mutability: Do not issue recommendation for stricter mutability for virtual functions but do issue it for functions that override.
 
 Compiler Features:
  * Code Generator: Evaluate ``keccak256`` of string literals at compile-time.
