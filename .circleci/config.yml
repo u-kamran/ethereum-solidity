@@ -96,9 +96,6 @@ defaults:
 
   # --------------------------------------------------------------------------
   # Tests Templates
-  - docker_auth: &docker_auth
-      username: stackenbotten
-      password: $GITHUB_ACCESS_TOKEN
 
   # store_test_results helper
   - store_test_results: &store_test_results
@@ -123,7 +120,9 @@ defaults:
   - test_ubuntu1604_clang: &test_ubuntu1604_clang
       docker:
         - image: << pipeline.parameters.ubuntu-1604-clang-ossfuzz-docker-image >>
-          auth: *docker_auth
+          auth:
+            username: stackenbotten
+            password: $GITHUB_ACCESS_TOKEN
       steps:
         - checkout
         - attach_workspace:
@@ -135,7 +134,9 @@ defaults:
   - test_ubuntu2004_clang: &test_ubuntu2004_clang
       docker:
         - image: << pipeline.parameters.ubuntu-2004-clang-docker-image >>
-          auth: *docker_auth
+          auth:
+            username: stackenbotten
+            password: $GITHUB_ACCESS_TOKEN
       steps:
         - checkout
         - attach_workspace:
@@ -147,7 +148,9 @@ defaults:
   - test_ubuntu2004: &test_ubuntu2004
       docker:
         - image: << pipeline.parameters.ubuntu-2004-docker-image >>
-          auth: *docker_auth
+          auth:
+            username: stackenbotten
+            password: $GITHUB_ACCESS_TOKEN
       steps:
         - checkout
         - attach_workspace:
@@ -383,7 +386,9 @@ jobs:
   chk_docs_pragma_min_version:
     docker:
       - image: << pipeline.parameters.ubuntu-2004-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       TERM: xterm
     steps:
@@ -393,7 +398,9 @@ jobs:
   b_ubu_clang: &build_ubuntu2004_clang
     docker:
       - image: << pipeline.parameters.ubuntu-2004-clang-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       CC: clang
       CXX: clang++
@@ -407,7 +414,9 @@ jobs:
   b_ubu_asan_clang: &build_ubuntu2004_clang
     docker:
       - image: << pipeline.parameters.ubuntu-2004-clang-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       CC: clang
       CXX: clang++
@@ -421,7 +430,9 @@ jobs:
   b_ubu: &build_ubuntu2004
     docker:
       - image: << pipeline.parameters.ubuntu-2004-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     steps:
       - checkout
       - run: *run_build
@@ -437,7 +448,9 @@ jobs:
   b_ubu18: &build_ubuntu1804
     docker:
       - image: << pipeline.parameters.ubuntu-1804-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       CMAKE_OPTIONS: -DCMAKE_CXX_FLAGS=-O2
       CMAKE_BUILD_TYPE: RelWithDebugInfo
@@ -492,7 +505,9 @@ jobs:
   b_ubu_ossfuzz: &build_ubuntu1604_clang
     docker:
       - image: << pipeline.parameters.ubuntu-1604-clang-ossfuzz-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       CC: clang
       CXX: clang++
@@ -600,7 +615,9 @@ jobs:
   b_ems:
     docker:
       - image: << pipeline.parameters.emscripten-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       TERM: xterm
     steps:
@@ -636,7 +653,9 @@ jobs:
   b_docs:
     docker:
       - image: << pipeline.parameters.ubuntu-2004-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     steps:
       - checkout
       - run: *setup_prerelease_commit_hash
@@ -653,7 +672,9 @@ jobs:
   t_ubu_soltest_enforce_yul: &t_ubu_soltest_enforce_yul
     docker:
       - image: << pipeline.parameters.ubuntu-2004-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       EVM: constantinople
       SOLTEST_FLAGS: --enforce-via-yul
@@ -680,7 +701,9 @@ jobs:
   t_ubu_cli: &t_ubu_cli
     docker:
       - image: << pipeline.parameters.ubuntu-2004-docker-image >>
-        auth: *docker_auth
+        auth:
+          username: stackenbotten
+          password: $GITHUB_ACCESS_TOKEN
     environment:
       TERM: xterm
     steps:
